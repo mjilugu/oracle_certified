@@ -70,11 +70,14 @@ public class Data implements DBAccess {
 			if(NO_OF_FIELDS != 6){
 				throw new IOException("INVALID_DATABASE_FILE: This implementation works with records with 6 fields only.");
 			}
+		}catch(SecurityException ex){
+			throw ex;
+		}catch(FileNotFoundException ex){
+			throw ex;
+		}catch(IOException ex){
+			throw ex;
 		}catch(Exception ex){
-			if(ex instanceof SecurityException || ex instanceof IOException || ex instanceof FileNotFoundException)
-				throw ex;
-			else
-				log.severe(ex.getMessage());
+			log.severe(ex.getMessage());
 		}
 	}
 	
